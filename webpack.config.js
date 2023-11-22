@@ -1,0 +1,65 @@
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: process.env.NODE_ENV,
+  entry: './src/index.js', 
+
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js'
+  },
+
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      publicPath: '/dist'
+    },
+    hot: true,
+    port: 8080,
+    proxy: {
+      '/': 'http://localhost:3000',
+    }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      },
+      {
+        test: /\.css$/i,///\.s[ac]ss$/i
+        // exclude: [/node_modules/, /client\/stylesheets\/modules/],
+        //these are evaluated from right to left
+        //create 'style' from JS strings, translates CSS into Common JS, Compiles Sass to CSS
+        use: ['style-loader', 'css-loader', 'sass-loader'], 
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/',
+            },
+          },
+        ],
+      },
+    ]
+  }
+}
