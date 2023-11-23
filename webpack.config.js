@@ -35,9 +35,9 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
+          // options: {
+          //   presets: ['@babel/preset-env', '@babel/preset-react'] //, { runtime: 'automatic' }
+          // }
         }
       },
       {
@@ -56,6 +56,13 @@ module.exports = {
               name: '[name].[ext]',
               outputPath: 'images/',
               publicPath: 'images/',
+            },
+            {
+              test: [/\.wexbim$/, /\.docx$/, /\.csv$/, /\.mp4$/, /\.xlsx$/, /\.doc$/, /\.avi$/, /\.webm$/, /\.mov$/, /\.mp3$/, /\.pdf$/],
+              use: [
+                'file-loader',
+              ],
+              type: 'javascript/auto',
             },
           },
         ],
