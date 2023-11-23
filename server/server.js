@@ -21,6 +21,9 @@ if (process.env.NODE_ENV === 'development') {
     console.log('dev request')
     return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
   });
+
+
+
 }
 else {
   console.log('entered prod path')
@@ -32,6 +35,14 @@ else {
   });
 }
 
+//global error handler
+app.use((err,res)=>{
+
+})
+
+
 
 
 app.listen(3000, ()=> { console.log("Server started on port 3000")});
+
+module.exports=app;

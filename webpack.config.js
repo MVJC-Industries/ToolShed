@@ -57,15 +57,16 @@ module.exports = {
               outputPath: 'images/',
               publicPath: 'images/',
             },
-            {
-              test: [/\.wexbim$/, /\.docx$/, /\.csv$/, /\.mp4$/, /\.xlsx$/, /\.doc$/, /\.avi$/, /\.webm$/, /\.mov$/, /\.mp3$/, /\.pdf$/],
-              use: [
-                'file-loader',
-              ],
-              type: 'javascript/auto',
-            },
+
           },
         ],
+      },
+      {
+        test: [/\.wexbim$/, /\.docx$/, /\.csv$/, /\.mp4$/, /\.xlsx$/, /\.doc$/, /\.avi$/, /\.webm$/, /\.mov$/, /\.mp3$/, /\.pdf$/],
+        use: [
+          'file-loader',
+        ],
+        type: 'javascript/auto',
       },
     ]
   }
