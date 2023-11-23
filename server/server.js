@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+require("dotenv").config();
+const pgPool = require('./models/db.js')
 // const apiRouter = require('./routes/api.js');
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -33,5 +36,13 @@ else {
 }
 
 
-
-app.listen(3000, ()=> { console.log("Server started on port 3000")});
+app.listen(PORT, async () => {
+  try {
+    await pgPool.query("SELECT NOW()"); // Query the database to check the connection
+    console.log("Connected to the database");
+    console.log("Server started on port " + PORT);
+  } catch (error) {
+    console.error("Failed to connect to the database:", error);
+  }
+});
+// app.listen(3000, ()=> { console.log("Server started on port 3000")});
