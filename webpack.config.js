@@ -57,7 +57,6 @@ module.exports = {
               outputPath: 'images/',
               publicPath: 'images/',
             },
-
           },
         ],
       },
