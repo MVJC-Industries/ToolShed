@@ -1,10 +1,15 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path');
-const cors = require('cors');
+const path = require("path");
+const cors = require("cors");
 require("dotenv").config();
-const pgPool = require('./models/db.js')
-// const apiRouter = require('./routes/api.js');
+const pgPool = require("./lib/sql/db.js");
+
+// import routers
+const userRouter = require("./routers/userRouter.js");
+const reservationRouter = require("./routers/reservationRouter.js");
+const toolRouter = require("./routers/toolRouter.js");
+
 const PORT = process.env.PORT;
 
 app.use(cors());
@@ -13,35 +18,34 @@ app.use(express.urlencoded({ extended: false }));
 
 // app.use('/api', apiRouter);
 
-
-
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   console.log(process.env.NODE_ENV);
   // statically serve everything in the build folder on the route '/dist'
-  app.use('/dist', express.static(path.join(__dirname, '../dist')));
+  app.use("/dist", express.static(path.join(__dirname, "../dist")));
   // serve index.html on the route '/'
-  app.get('/*', (req, res) => {
-    console.log('dev request')
-    return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
+  app.get("/*", (req, res) => {
+    console.log("dev request");
+    return res.status(200).sendFile(path.join(__dirname, "../src/index.html"));
   });
+} else {
+  console.log("entered prod path");
+  app.use("/", express.static(path.join(__dirname, "../dist")));
 
-
-
-}
-else {
-  console.log('entered prod path')
-  app.use('/', express.static(path.join(__dirname, '../dist')));
-
-  app.get('/*', (req, res) => {
-    console.log('catch all');
-    return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
+  app.get("/*", (req, res) => {
+    console.log("catch all");
+    return res.status(200).sendFile(path.join(__dirname, "../dist/index.html"));
   });
 }
+
+//route handlers
+app.use("/user", userRouter);
+app.use("/reservation", reservationRouter);
+
+//public routes with limited permissions if not logged in
+app.use("/tools", toolRouter);
 
 //global error handler
-app.use((err,res)=>{
-
-})
+app.use((err, res) => {});
 
 app.listen(PORT, async () => {
   try {
