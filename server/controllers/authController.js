@@ -1,6 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oidc");
+const localStrategy = require("passport-local");
 
+/*
 const newGoogleStrategy = new GoogleStrategy({
   clientID: process.env["GOOGLE_CLIENT_ID"],
   clientSecret: process.env["GOOGLE_CLIENT_SECRET"],
@@ -63,3 +65,4 @@ passport.use(newGoogleStrategy, () => {
     }
   );
 });
+*/
