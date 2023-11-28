@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 require("dotenv").config();
 
 const PG_URI = process.env.CONNECTION_STRING;
@@ -6,12 +6,12 @@ const pw = process.env.CONNECTION_PW;
 
 // create a new pool here using the connection string above
 const pool = new Pool({
-  password: pw,  
-  connectionString: PG_URI
+  password: pw,
+  connectionString: PG_URI,
 });
 
 pool.on("connect", () => {
-  console.log("connected to the db")
+  console.log("connected to the db");
 });
 
 module.exports = pool;
