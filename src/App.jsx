@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <h1>Hello world!</h1>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
