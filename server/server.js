@@ -44,8 +44,10 @@ app.use("/user", userRouter);
 app.use("/reservation", reservationRouter);
 
 //public routes with limited permissions if not logged in
-app.use("/tools", toolRouter);
-
+app.use("/dashboard/tools", toolRouter, (req, res) => {
+  console.log('i am in the toolRouter middleware')
+  return res.status(200).json(res.locals.tools);
+});
 //global error handler
 app.use((err, res) => {});
 
@@ -58,4 +60,4 @@ app.listen(PORT, async () => {
     console.error("Failed to connect to the database:", error);
   }
 });
-app.listen(3000, ()=> { console.log("Server started on port 3000")});
+// app.listen(3000, ()=> { console.log("Server started on port 3000")});
