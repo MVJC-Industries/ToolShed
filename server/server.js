@@ -18,7 +18,18 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use('/api', apiRouter);
+app.use('/reservation', (req, res, next) => {
+  console.log('hit reservation router');
+  next();
+}, reservationRouter);
+app.use('/user', (req, res, next) => {
+  console.log('hit user router');
+  next();
+}, userRouter);
+app.use('/tool', (req, res, next) => {
+  console.log('hit tool router');
+  next();
+}, toolRouter);
 
 if (process.env.NODE_ENV === "development") {
   console.log(process.env.NODE_ENV);
@@ -58,4 +69,3 @@ app.listen(PORT, async () => {
     console.error("Failed to connect to the database:", error);
   }
 });
-app.listen(3000, ()=> { console.log("Server started on port 3000")});
