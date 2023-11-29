@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const db = require("../lib/sql/db.js"); //should point to our db
 const errorHandler = require("../lib/errorHandler.js");
 const salt = 11;
@@ -23,7 +23,7 @@ userController.createUser = async (req, res, next) => {
       zip_code,
     ];
     const newUser = await db.query(text, params);
-    res.locals.user = newUser.rows;
+    res.locals.user_id = newUser.rows[0].id;
     console.log("userController.createUser middleware newUser: ", newUser.rows);
     return next();
   } catch (error) {
@@ -46,13 +46,15 @@ userController.verifyUser = async (req, res, next) => {
 		WHERE email = ($1)`;
     const params = [email];
     const validUser = await db.query(text, params);
-    console.log("validUser: ", validUser.rows);
+    console.log("validUser: ", validUser.rows[0].hashed_password);
     const validPassword = await bcrypt.compare(
       password,
-      validUser.rows[0].hashed_password
+      validUser.rows[0].hashed_password.trim() //need to trim whitespace becuase schema has 64 characters, and bcrypt affords 60
     );
+    console.log("validPassword: ", validPassword);
     if (validPassword) {
       res.locals.user_id = validUser.rows[0].id;
+      console.log(res.locals.user_id);
       return next();
     } else {
       return next();
