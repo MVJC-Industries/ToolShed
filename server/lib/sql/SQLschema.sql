@@ -10,15 +10,15 @@ CREATE TABLE "users"(
     "id" SERIAL PRIMARY KEY,
     "first_name" VARCHAR(255) NOT NULL,
     "last_name" VARCHAR(255) NOT NULL,
-    "email" VARCHAR(255) NULL,
-    "phone_number" VARCHAR(255) NOT NULL,
+    "email" VARCHAR(255) NOT NULL,
+    "phone_number" VARCHAR(255) NULL,
     "zip_code" INTEGER NOT NULL,
-    "password" VARCHAR(255) NOT NULL,
+    "hashed_password" VARCHAR(255) NOT NULL,
     "created_at" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL
 );
 
 ALTER TABLE
-    "users" ADD CONSTRAINT "users_last_name_unique" UNIQUE("last_name");
+    "users" ADD CONSTRAINT "users_email_unique" UNIQUE("email");
 CREATE TABLE "reservations"(
     "id" SERIAL PRIMARY KEY,
     "user_id" INTEGER NOT NULL,
