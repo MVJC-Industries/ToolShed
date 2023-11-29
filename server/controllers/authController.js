@@ -1,6 +1,11 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oidc");
-const localStrategy = require("passport-local");
+
+// save unique user ID in cookie
+
+const authController = {};
+
+authContro;
 
 /*
 const newGoogleStrategy = new GoogleStrategy({
