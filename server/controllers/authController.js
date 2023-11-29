@@ -5,7 +5,7 @@ const GoogleStrategy = require("passport-google-oidc");
 
 const authController = {};
 
-authContro;
+module.exports = authController;
 
 /*
 const newGoogleStrategy = new GoogleStrategy({

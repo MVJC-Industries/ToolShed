@@ -4,47 +4,30 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 const db = require("../lib/sql/db.js"); //should point to our db
+const userController = require("../controllers/userController.js");
 //import controllers
 
-router.post("/signup", async (req, res, next) => {
-  console.log("/signup route hit!", req.body);
-  const { first_name, last_name, email, password, phone_number, zip_code } =
-    req.body;
-  const hashPassword = await bcrypt.hash(password, 10);
-  db.query(
-    "INSERT INTO users (first_name, last_name, email, hashed_password, phone_number, zip_code, created_at) VALUES ($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)",
-    [first_name, last_name, email, hashPassword, phone_number, zip_code],
-    function (err) {
-      //   console.log("err", err, "hashedPassword", hashedPassword);
-      if (err) {
-        return next(err);
-      }
-      var user = {
-        // id: this.lastID,
-        email: req.body.email,
-      };
-      res.redirect("/user/login");
-    }
-  );
+router.post("/signup", userController.createUser, async (req, res, next) => {
+  // console.log("res.locals.user: ", res.locals.user);
+  if (res.locals.user) res.status(200).json({ user_id: res.locals.user[0].id });
+  else
+    res.status(500).json({ error: "There was an error signing up this user" });
 });
-
-module.exports = router;
-
-//end of stolen code
-
-/**
- * POST
- * If user and password are correct, redirect to login
- */
-router.post("/signup");
 
 /**
  * POST
  * checks user and pass against user table -> returns cookie id if successful, redirect to dashboard
  */
 // router.post("/login");
-router.get("/login", function (req, res, next) {
-  res.render("login");
+router.post("/login", userController.verifyUser, async (req, res, next) => {
+  if (res.locals.user_id || res.locals.token)
+    res.status(200).json({
+      user_id: res.locals.user_id /* , sessionToken: res.locals.token */,
+    });
+  else
+    res.status(400).json({
+      error: "Invalid username or password",
+    });
 });
 
 /**
