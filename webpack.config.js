@@ -17,15 +17,16 @@ module.exports = {
   ],
 
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'dist'),
       publicPath: '/dist'
     },
     hot: true,
     port: 8080,
-    proxy: {
-      '/': 'http://localhost:3000',
-    }
+    // proxy: {
+    //   '/': 'http://localhost:3000',
+    // }
   },
 
   module: {

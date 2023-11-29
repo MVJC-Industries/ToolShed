@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
+import Listing from "./Listing.jsx";
 //import anything else we need in dashboard
 
 const Dashboard=()=>{
@@ -9,7 +10,7 @@ const Dashboard=()=>{
     return(
         <div className="dasboard">
             <Navbar/>
-
+            
         </div>
     )
 }
