@@ -17,7 +17,7 @@ const submit = async (pickupDate, dropoffDate, message) => {
   );
 };
 
-const Reservation = () => {
+const ReservationForm = () => {
   const [pickup, setPickup] = useState(dayjs());
   const [dropoff, setDropoff] = useState(dayjs());
   const [message, setMessage] = useState("");
@@ -74,4 +74,4 @@ const Reservation = () => {
   );
 };
 
-export default Reservation;
+export default ReservationForm;
