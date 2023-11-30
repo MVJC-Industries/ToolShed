@@ -1,18 +1,29 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../lib/sql/db.js");
 //import controllers
 
 /**
  * GET
  * displays all reservations (tools that I need for my projects) associated with the current userId
  */
-router.get("/");
+router.get("/", (req, res) => {
+  const { pickup, dropoff, message } = req.body;
+  //get userid from browser session if still valid
+
+  //   pool.query(`SELECT * FROM reservations WHERE user_id=`);
+  db.query(`SELECT * FROM reservations`);
+
+  //determine how to handle errors
+});
 
 /**
  * POST
  * adds reservation associated to a the current userId (stored in browser)
  */
-router.post("/");
+router.post("/", (req, res, err) => {
+  console.log(req.body);
+});
 
 /**
  * GET

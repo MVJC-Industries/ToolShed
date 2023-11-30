@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Reservation from "./Reservation.jsx";
+import ReservationForm from "./ReservationForm.jsx";
 
 const Login = () => {
   return (
     <div>
       <p className="text-3xl font-bold underline">This is our login page</p>
-      <Reservation />
+      <ReservationForm />
     </div>
   );
 };
