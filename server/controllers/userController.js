@@ -40,7 +40,7 @@ userController.createUser = async (req, res, next) => {
 
 userController.verifyUser = async (req, res, next) => {
   try {
-    console.log("req.body: ", req.body);
+    console.log("verifyUser middleware req.body: ", req.body);
     const { email, password } = req.body;
     const text = `SELECT * FROM users
 		WHERE email = ($1)`;

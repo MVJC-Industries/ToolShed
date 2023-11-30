@@ -24,9 +24,9 @@ module.exports = {
     },
     hot: true,
     port: 8080,
-    // proxy: {
-    //   '/': 'http://localhost:3000',
-    // }
+    proxy: {
+      "/": "http://localhost:3000",
+    },
   },
 
   module: {
@@ -36,9 +36,9 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          // options: {
-          //   presets: ['@babel/preset-env', '@babel/preset-react'] //, { runtime: 'automatic' }
-          // }
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"], //, { runtime: 'automatic' }
+          },
         },
       },
       {
