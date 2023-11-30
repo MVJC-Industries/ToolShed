@@ -12,7 +12,7 @@ const Navbar = ({ username }) => {
   };
 
   return (
-    <div className="flex justify-around items-center padding-5 background-grey color-white">
+    <div className="flex justify-around items-center m-3 padding-5 background-grey color-white">
       <span
         className="dashboardNav"
         onClick={() => {
@@ -30,7 +30,7 @@ const Navbar = ({ username }) => {
         Your Shed
       </span>
       <button
-        className="justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         type="submit"
         onClick={handleLogout}
       >
