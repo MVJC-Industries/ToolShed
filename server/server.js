@@ -20,18 +20,23 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//route handlers
 app.use('/reservation', (req, res, next) => {
-  console.log('hit reservation router');
+  console.log('incoming reservation path: ', req.path);
   next();
 }, reservationRouter);
+
 app.use('/user', (req, res, next) => {
   console.log('hit user router');
   next();
 }, userRouter);
-app.use('/tool', (req, res, next) => {
+
+//public routes with limited permissions if not logged in
+app.use('/tools', (req, res, next) => {
   console.log('hit tool router');
   next();
 }, toolRouter);
+
 
 if (process.env.NODE_ENV === "development") {
   console.log(process.env.NODE_ENV);
@@ -53,11 +58,11 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //route handlers
-app.use("/user", userRouter);
-app.use("/reservation", reservationRouter);
+// app.use("/user", userRouter);
+// app.use("/reservation", reservationRouter);
 
 //public routes with limited permissions if not logged in
-app.use("/tools", toolRouter);
+// app.use("/tools", toolRouter);
 
 app.use("*", (req, res) => {
   res.status(404).send("Not Found");
