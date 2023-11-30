@@ -8,6 +8,7 @@ const Navbar = ({ username }) => {
   //placeholder for handleLogout
   const handleLogout = () => {
     //clear any cookies/sessions here
+    sessionStorage.clear();
     navigate("/");
   };
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -22,7 +23,10 @@ const Login = () => {
       );
       console.log(response.data);
       if (response.data.sessionToken) {
-        sessionStorage.setItem("session", JSON.stringify(response.data));
+        sessionStorage.setItem(
+          JSON.stringify(response.data.user_id),
+          JSON.stringify(response.data.sessionToken)
+        );
         navigate("/dashboard");
       }
     } catch (error) {
@@ -107,12 +111,12 @@ const Login = () => {
 
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}
-              <a
-                href="/signup"
+              <Link
+                to="/signup"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
                 Sign up here
-              </a>
+              </Link>
             </p>
           </div>
         </div>
