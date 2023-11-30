@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./styles.css";
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import Dashboard from "./components/Dashboard.jsx";
 import Signup from "./components/Signup.jsx";

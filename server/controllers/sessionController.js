@@ -30,10 +30,6 @@ sessionController.getToken = async (req, res, next) => {
   }
 };
 
-sessionController.verifyToken = () => {};
-
-sessionController.googleAuth = () => {};
-
 module.exports = sessionController;
 
 /*
