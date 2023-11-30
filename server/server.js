@@ -12,9 +12,11 @@ const toolRouter = require("./routers/toolRouter.js");
 const toolController=require("./controllers/toolController.js")
 const PORT = process.env.PORT;
 
-app.use(cors({
-  origin:"http://localhost:8080",
-}));
+app.use(
+  cors({
+    origin: "http://localhost:8080",
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -48,8 +50,20 @@ app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
   console.log('i am in the toolRouter middleware',res.locals.tools)
   return res.status(200).json(res.locals.tools);
 });
+app.use("*", (req, res) => {
+  res.status(404).send("Not Found");
+});
 //global error handler
-app.use((err, res) => {});
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: "Express error handler caught unknown middleware error",
+    status: 500,
+    message: { err: "An error occurred" },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
 
 app.listen(PORT, () => {
   console.log("Server started on port " + PORT);
