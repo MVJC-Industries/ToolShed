@@ -14,7 +14,13 @@ const handleSearch = async(e)=>{
     e.preventDefault();
     // Make a request to the server with the search query
     try {
-        const response = await fetch(`http://localhost:3000/dashboard/tools/search?query=${querystr}`);
+        const response = await fetch(`http://localhost:3000/dashboard/tools/search`,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: querystr })
+        });
         const data = await response.json();
         setSearchResults(data);
         // Handle the response data

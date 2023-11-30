@@ -9,7 +9,7 @@ const pgPool = require("./lib/sql/db.js");
 const userRouter = require("./routers/userRouter.js");
 const reservationRouter = require("./routers/reservationRouter.js");
 const toolRouter = require("./routers/toolRouter.js");
-
+const toolController=require("./controllers/toolController.js")
 const PORT = process.env.PORT;
 
 app.use(cors({
@@ -44,20 +44,24 @@ app.use("/user", userRouter);
 app.use("/reservation", reservationRouter);
 
 //public routes with limited permissions if not logged in
-app.use("/dashboard/tools", toolRouter, (req, res) => {
-  console.log('i am in the toolRouter middleware')
+app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
+  console.log('i am in the toolRouter middleware',res.locals.tools)
   return res.status(200).json(res.locals.tools);
 });
 //global error handler
 app.use((err, res) => {});
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
+  console.log("Server started on port " + PORT);
+});
+
+// Check the database connection
+(async () => {
   try {
     await pgPool.query("SELECT NOW()"); // Query the database to check the connection
     console.log("Connected to the database");
-    console.log("Server started on port " + PORT);
   } catch (error) {
     console.error("Failed to connect to the database:", error);
   }
-});
+})();
 // app.listen(3000, ()=> { console.log("Server started on port 3000")});

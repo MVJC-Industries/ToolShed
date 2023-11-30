@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
 
-const Listing = ({searchResults})=>{
+import React from 'react';
 
-<div className="searchResults">
-    {searchResults.map((result) => (
-        <div key={result.id}>
-            <h3>{result.toolName}</h3>
-            <p>{result.description}</p>
-            <p>Price: ${result.price} per hour</p>
-        </div>
-    ))}
-</div>
+const Listing = ({ searchResults }) => {
+  return (
+    <div className="listing">
+      <h2>Search Results</h2>
+      <ul>
+        {searchResults.map(tool => (
+          <li key={tool.id}>
+            <h3>{tool.tool_title}</h3>
+            <p>{tool.description}</p>
+            <p>Price: {tool.price}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default Listing;
