@@ -12,9 +12,11 @@ const toolRouter = require("./routers/toolRouter.js");
 
 const PORT = process.env.PORT;
 
-app.use(cors({
-  origin:"http://localhost:8080",
-}));
+app.use(
+  cors({
+    origin: "http://localhost:8081",
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -58,4 +60,3 @@ app.listen(PORT, async () => {
     console.error("Failed to connect to the database:", error);
   }
 });
-app.listen(3000, ()=> { console.log("Server started on port 3000")});
