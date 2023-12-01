@@ -9,7 +9,7 @@ const db = require("../lib/sql/db.js");
  */
 router.get("/", (req, res) => {
   //get userid from browser session if still valid
-
+  res.send(res.locals);
   // db.query(`SELECT * FROM reservations WHERE user_id=`);
   db.query(`SELECT * FROM reservations`); //need to ask somebody how to get data from the database
 

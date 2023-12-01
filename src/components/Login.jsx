@@ -5,11 +5,31 @@ import ReservationCard from "./ReservationCard.jsx";
 const Login = () => {
   return (
     <div>
-      <p className="text-3xl font-bold underline border-2 h-full  ">
-        This is our login page
-      </p>
-      <ReservationCard />
-      <ReservationForm />
+      <h1>Sign in</h1>
+      <form action="/user/login" method="post">
+        <section>
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            required
+            autofocus
+          />
+        </section>
+        <section>
+          <label for="current-password">Password</label>
+          <input
+            id="current-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </section>
+        <button type="submit">Sign in</button>
+      </form>
     </div>
   );
 };
