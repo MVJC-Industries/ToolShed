@@ -24,9 +24,12 @@ module.exports = {
     },
     hot: true,
     port: 8080,
-    // proxy: {
-    //   '/': 'http://localhost:3000',
-    // }
+    proxy: {
+      '/user': 'http://localhost:3000',
+      '/reservation':'http://localhost:3000',
+      '/tool':'http://localhost:3000',
+      // '/dashboard/tools/search':'http://localhost:3000'
+    }
   },
 
   module: {
