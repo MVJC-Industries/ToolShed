@@ -14,6 +14,7 @@ ToolController.getMyTools = async (req, res, next) => {
   } catch (error) {
     return next({
       log: "Express error handler caught middleware error when getting tools by user id",
+      status: 404,
       message: { err: err }
     });
   }
