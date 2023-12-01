@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport");
-// const LocalStrategy = require("passport-local");
+
 const db = require("../lib/sql/db.js"); //should point to our db
 const userController = require("../controllers/userController.js");
 const sessionController = require("../controllers/sessionController.js");

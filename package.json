@@ -49,6 +49,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.7.0",
     "@radix-ui/themes": "^2.0.1",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.2",

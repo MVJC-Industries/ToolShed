@@ -6,6 +6,7 @@ import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 import Profile from "./components/Profile.jsx";
 import ReservationForm from "./components/ReservationForm.jsx";
+import ImageUpload from "./ui-components/ImageUpload.jsx";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/reservation" element={<ReservationForm />} />
+          <Route path="/upload" element={<ImageUpload />} />
         </Routes>
       </BrowserRouter>
     </div>
