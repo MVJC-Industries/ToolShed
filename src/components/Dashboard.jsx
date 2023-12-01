@@ -36,7 +36,7 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className="">
-        <div className="bg-gray-200 flex items-center justify-start flex-col mx-2 pb-6">
+        <div className="bg-gray-100 flex items-center justify-start flex-col mx-2 pb-6">
           <p className="m-5">What are you looking for?</p>
 
           <div>

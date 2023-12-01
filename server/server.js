@@ -21,6 +21,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // app.use('/api', apiRouter);
+//route handlers
+app.use("/user", userRouter);
+app.use("/reservation", reservationRouter);
+
+//public routes with limited permissions if not logged in
+app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
+  console.log("i am in the toolRouter middleware", res.locals.tools);
+  return res.status(200).json(res.locals.tools);
+});
+app.use("*", (req, res) => {
+  res.status(404).send("Not Found");
+});
 
 if (process.env.NODE_ENV === "development") {
   console.log(process.env.NODE_ENV);
@@ -41,18 +53,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-//route handlers
-app.use("/user", userRouter);
-app.use("/reservation", reservationRouter);
-
-//public routes with limited permissions if not logged in
-app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
-  console.log("i am in the toolRouter middleware", res.locals.tools);
-  return res.status(200).json(res.locals.tools);
-});
-app.use("*", (req, res) => {
-  res.status(404).send("Not Found");
-});
 //global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {

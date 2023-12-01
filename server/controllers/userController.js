@@ -7,7 +7,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   try {
-    // console.log("/signup route hit!", req.body);
+    console.log("/signup route hit!", req.body);
     const { first_name, last_name, email, password, phone_number, zip_code } =
       req.body;
     const hashPassword = await bcrypt.hash(password, salt);
@@ -23,6 +23,7 @@ userController.createUser = async (req, res, next) => {
       zip_code,
     ];
     const newUser = await db.query(text, params);
+    console.log(newUser);
     res.locals.user_id = newUser.rows[0].id;
     console.log("userController.createUser middleware newUser: ", newUser.rows);
     return next();

@@ -25,7 +25,9 @@ module.exports = {
     hot: true,
     port: 8080,
     proxy: {
-      "/": "http://localhost:3000",
+      "/user": "http://localhost:3000",
+      "/tools": "http://localhost:3000",
+      "/reservations": "http://localhost:3000",
     },
   },
 

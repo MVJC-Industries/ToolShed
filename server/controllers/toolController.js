@@ -3,17 +3,16 @@ const db = require("../lib/sql/db.js");
 const toolController = {};
 
 toolController.searchTool = async (req, res, next) => {
-  console.log("i am in searchTool controller", req.body.query);
-
-  const query = req.body.query;
+  console.log("req.query in searchTool controller", req.body.query);
 
   try {
-    // const query = `SELECT * FROM transactions WHERE user_id=${req.body.userID} AND date BETWEEN '${req.body.dateStart}' AND '${req.body.dateEnd}' ORDER BY
-    const searchResults = await db.query(
-      `SELECT * FROM "public"."tools" WHERE tool_title = '${query}'`
-    );
+    const { query } = req.body;
+    const toolQuery = `SELECT * FROM tools 
+		WHERE tool_title = ($1)`;
+    const params = [query];
+    const searchResults = await db.query(toolQuery, params);
 
-    console.log("i am searchResults", searchResults.rows);
+    console.log("i am searchResults", searchResults);
     if (!searchResults.rows) {
       return next("no db result");
     } else {
