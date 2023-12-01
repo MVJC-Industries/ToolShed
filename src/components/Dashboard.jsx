@@ -1,7 +1,8 @@
 import React, { useState, Component } from "react";
 import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
-import Listing from "./Listing.jsx";
+import Listing from "./DashboardListing.jsx";
+import "./Dashboard.css";
 //import anything else we need in dashboard
 
 const Dashboard = () => {
