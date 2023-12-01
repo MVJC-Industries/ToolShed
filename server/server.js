@@ -9,7 +9,7 @@ const pgPool = require("./lib/sql/db.js");
 const userRouter = require("./routers/userRouter.js");
 const reservationRouter = require("./routers/reservationRouter.js");
 const toolRouter = require("./routers/toolRouter.js");
-const toolController=require("./controllers/toolController.js")
+const toolController=require("./controllers/toolController.js");
 const PORT = process.env.PORT;
 
 app.use(
@@ -78,4 +78,4 @@ app.listen(PORT, () => {
     console.error("Failed to connect to the database:", error);
   }
 })();
-// app.listen(3000, ()=> { console.log("Server started on port 3000")});
+// app.listen(3000, ()=> { co
