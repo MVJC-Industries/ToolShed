@@ -59,7 +59,6 @@ const Profile = ()=>{
 
         //call fetch User Rentals
         fetchUserRentals();
-        console.log('tried to get stuff');
     }, []);
 
     return(
