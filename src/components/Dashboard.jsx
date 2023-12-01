@@ -1,7 +1,8 @@
 import React, { useState, Component } from 'react';
 import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
-import Listing from "./Listing.jsx";
+import Listing from "./DashboardListing.jsx";
+import "./Dashboard.css"
 //import anything else we need in dashboard
 
 const Dashboard=()=>{
@@ -31,8 +32,9 @@ const handleSearch = async(e)=>{
 }
 //display listings
     return(
-        <div className="dasboard">
+        <div>
             <Navbar/>
+        <div className="dashboard">
             <div className="searchbar">
                 <input
                 type="text"
@@ -42,7 +44,8 @@ const handleSearch = async(e)=>{
                  />
                 <button onClick={(e)=>handleSearch(e)}>Search</button>
             </div>
-            <Listing searchResults={searchResults}></Listing>
+            <Listing classname="listings" searchResults={searchResults}></Listing>
+        </div>
         </div>
     )
 }
