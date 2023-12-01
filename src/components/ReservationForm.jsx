@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Button, TextField, Box } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 
 const handleError = (wrongOrder, impossibleDates) => {
@@ -28,7 +29,6 @@ const ReservationForm = () => {
       <h1 className="font-semibold text-2xl pl-8 pb-5 pt-6 text-start padding-x">
         Reserve This Item
       </h1>
-      <div>{message.toString()}</div>
       <Box
         component="form"
         sx={{
@@ -63,8 +63,9 @@ const ReservationForm = () => {
       </div>
       <div className="pb-6">
         <Button
-          variant="contained"
-          className="w-40 h-12 flex justify-center "
+          variant="outlined"
+          endIcon={<SendIcon />}
+          className="w-50 h-12 flex justify-center "
           onClick={() => submit(pickup, dropoff, message)}
         >
           Reserve Now
