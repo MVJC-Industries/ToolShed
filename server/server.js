@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "http://localhost:8081",
   })
 );
 app.use(express.json());
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 //route handlers
 app.use("/user", userRouter);
 app.use("/reservations", reservationRouter);
-app.use('/tools', toolRouter);
+app.use("/tools", toolRouter);
 
 //public routes with limited permissions if not logged in
 app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
@@ -78,4 +78,3 @@ app.listen(PORT, () => {
     console.error("Failed to connect to the database:", error);
   }
 })();
-// app.listen(3000, ()=> { co
