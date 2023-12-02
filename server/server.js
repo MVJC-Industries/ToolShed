@@ -20,10 +20,10 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use('/api', apiRouter);
 //route handlers
 app.use("/user", userRouter);
-app.use("/reservation", reservationRouter);
+app.use("/reservations", reservationRouter);
+app.use('/tools', toolRouter);
 
 //public routes with limited permissions if not logged in
 app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
