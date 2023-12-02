@@ -32,7 +32,6 @@ toolController.getMyTools = async (req, res, next) => {
   try {
     const myTools = await db.query(queryText, [userId]);
     res.locals.myTools = myTools.rows;
-    console.log('my Tools from DB within ToolController: ', myTools.rows);
     return next();
   } catch (error) {
     return next({

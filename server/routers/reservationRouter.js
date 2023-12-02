@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const reservationController = require("../controllers/reservationController.js");
+const reservationsController = require("../controllers/reservationController.js");
 const toolController = require("../controllers/toolController.js");
 //import controllers
 
@@ -10,11 +10,16 @@ const toolController = require("../controllers/toolController.js");
  * GET
  * gets all rentals - my tools that I am renting to other people - associated with a the current userId (stored in browser)
  */
-router.get("/rentals", (req, res, next) => {
-  console.log('req.query in rentals: ', req.query);
-  res.status(200).send('successful send from reservation router: rentals');
-  // next();
-})
+router.get("/rentals", 
+  (req, res, next) => {
+    console.log('req.query in rentals: ', req.query);
+    next();
+  },
+  reservationsController.getMyReservations,
+  (req, res) => {
+    res.status(200).json(res.locals.myReservations);
+  }
+)
 
 /**
  * GET
