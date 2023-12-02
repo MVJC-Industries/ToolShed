@@ -1,11 +1,40 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oidc");
-
+const jwt = require("jsonwebtoken");
+const errorHandler = require("../lib/errorHandler.js");
 // save unique user ID in cookie
 
-const authController = {};
+const sessionController = {};
 
-module.exports = authController;
+sessionController.getToken = async (req, res, next) => {
+  try {
+    const token = jwt.sign(
+      { user_id: res.locals.user_id },
+      process.env.SECRET,
+      {
+        expiresIn: "2h",
+      }
+    );
+    res.locals.token = token;
+    console.log("token from middleware: ", res.locals.token);
+    return next();
+  } catch (error) {
+    return next(
+      errorHandler({
+        controller: "sessionController",
+        method: "getToken",
+        type: "middleware",
+        error: error,
+      })
+    );
+  }
+};
+
+sessionController.verifyToken = () => {};
+
+sessionController.googleAuth = () => {};
+
+module.exports = sessionController;
 
 /*
 const newGoogleStrategy = new GoogleStrategy({
