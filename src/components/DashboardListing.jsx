@@ -11,7 +11,7 @@ const Listing = ({ searchResults }) => {
           key={`tool-${tool.tool_id}`}
         >
           {tool.public_link ? (
-            <div className="w-full aspect-[16/9]">
+            <div className="w-full aspect-[4/3]">
               <img
                 src={tool.public_link}
                 alt={tool.tool_title}
