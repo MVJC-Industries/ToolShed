@@ -25,10 +25,13 @@ const Login = () => {
       );
       console.log(response.data);
       if (response.data.sessionToken) {
-        sessionStorage.setItem("SessionInfo", {
-          id: JSON.stringify(response.data.user_id),
-          token: JSON.stringify(response.data.sessionToken),
-        });
+        sessionStorage.setItem(
+          "SessionInfo",
+          JSON.stringify({
+            id: response.data.user_id,
+            token: response.data.sessionToken,
+          })
+        );
         navigate("/dashboard");
       }
     } catch (error) {

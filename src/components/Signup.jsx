@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import TextInput from "../ui-components/FormInput.jsx";
+import SubmitButton from "../ui-components/FormSubmit.jsx";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -45,15 +46,15 @@ const Signup = () => {
       <div className="relative z-20 flex items-center top-3 ml-10 text-lg font-medium">
         <Link to="/dashboard">
           <div>
-            <p className="text-yellow-500 dark:text-yellow-500">ToolShed</p>
+            <h1 className="text-mindaro text-4xl m-3">ToolShed</h1>
           </div>
         </Link>
       </div>
       <div className="grid h-full justify-center md:grid-cols-1 lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="absolute inset-0 bg-[url('https://cdnb.artstation.com/p/assets/images/images/024/322/565/large/skaior-designs-garden-shed-big-publish.jpg?1582042307')] bg-cover md:bg-auto sm:bg-auto" />
         <div className="container relative w-full h-full max-w-2xl bg-grey">
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-yellow-800">
+          <div className="bg-tea_green/20 sm:bg-tea_green/80 md:bg-tea_green/60 lg:bg-tea_green/30 rounded-lg pb-5 px-10 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <h1 className="py-3 mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-coffee">
               Create an account
             </h1>
             <form className="flex flex-col" onSubmit={handleSubmit}>
@@ -63,12 +64,7 @@ const Signup = () => {
               <TextInput id="zip_code" text="Zip Code" />
               <TextInput id="email" text="Email" />
               <TextInput id="password" text="Password" />
-              <button
-                className="w-full justify-center rounded-md bg-yellow-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-800 hover:text-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-100"
-                type="submit"
-              >
-                Sign in
-              </button>
+              <SubmitButton text="Sign up" />
             </form>
           </div>
         </div>

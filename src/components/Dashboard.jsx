@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
 import Listing from "./DashboardListing.jsx";
@@ -35,34 +35,37 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="">
-        <div className="bg-gray-100 flex items-center justify-start flex-col mx-2 pb-6">
-          <p className="m-5">What are you looking for?</p>
-
-          <div>
-            <input
-              className="border-2 rounded-md py-1 px-3 mx-3 "
-              type="text"
-              value={querystr}
-              onChange={(e) => setQuerystr(e.target.value)}
-              placeholder="Search for tools..."
-            />
-            <button
-              className="justify-center rounded-md bg-gray-600 py-1.5 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              onClick={(e) => handleSearch(e)}
-            >
-              Search
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-center mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 ">
-            Tools for Rent
-          </h2>
-        </div>
-        <div className="group-relative px-6 mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          <Listing searchResults={searchResults}></Listing>
-        </div>
+      <div className="flex flex-col bg-coffee/20 items-center justify-center py-6">
+        <section className="relative z-0 mb-6 group w-3/5">
+          <input
+            type="text"
+            value={querystr}
+            onChange={(e) => setQuerystr(e.target.value)}
+            className="block py-2.5 px-0 w-full text-sm text-coffee bg-transparent border-0 border-b-2 border-coffee appearance-none  focus:border-muted_green focus:outline-none focus:ring-0 focus:border-muted_green peer"
+            placeholder=" "
+            required
+          />
+          <label
+            htmlFor="text"
+            className="absolute text-sm text-coffee duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-muted-green peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 "
+          >
+            What are you looking for?
+          </label>
+        </section>
+        <button
+          className="rounded-md bg-coffee text-tea_green px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-coffee/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
+          onClick={handleSearch}
+        >
+          Search
+        </button>
+      </div>
+      <div className="flex justify-center mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-coffee ">
+          Tools for Rent
+        </h2>
+      </div>
+      <div>
+        <Listing searchResults={searchResults}></Listing>
       </div>
     </>
   );

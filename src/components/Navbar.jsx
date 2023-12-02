@@ -18,25 +18,26 @@ const Navbar = ({ username }) => {
   }, [loggedIn]);
 
   return loggedIn ? (
-    <div className="flex justify-around items-center m-3 padding-5 background-grey color-white">
-      <span
-        className="dashboardNav"
+    <div className="flex flex-row justify-start items-center text-mindaro top-3 bg-reseda_green">
+      <h1
+        className="text-2xl basis-1/8 m-5 hover:text-mindaro/90 cursor-pointer"
         onClick={() => {
           navigate("/dashboard");
         }}
       >
-        Tool Wall
-      </span>
-      <span
-        className="Yourshed"
+        ToolShed
+      </h1>
+      <h1
+        className="text-2xl basis-1/8 m-5 hover:text-mindaro/90 cursor-pointer"
         onClick={() => {
           navigate("/profile");
         }}
       >
-        Your Shed
-      </span>{" "}
+        MyShed
+      </h1>
+
       <button
-        className="justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="absolute right-10 rounded-md bg-mindaro px-3 py-1.5 text-sm font-semibold leading-6 text-coffee shadow-sm hover:bg-mindaro/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mindaro/80"
         type="submit"
         onClick={handleLogout}
       >
@@ -44,25 +45,19 @@ const Navbar = ({ username }) => {
       </button>
     </div>
   ) : (
-    <div className="flex justify-around items-center m-3 padding-5 background-grey color-white">
-      <span
-        className="dashboardNav"
-        onClick={() => {
-          navigate("/dashboard");
-        }}
-      >
-        Tool Wall
-      </span>
-      <span
-        className="Yourshed"
-        onClick={() => {
-          navigate("/profile");
-        }}
-      >
-        Your Shed
-      </span>{" "}
+    <div className="flex items-center text-mindaro top-3 p-7 bg-reseda_green">
+      <div className="absolute left-5">
+        <h1
+          className="text-mindaro text-4xl m-3 hover:text-minaro/90 cursor-pointer"
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+        >
+          ToolShed
+        </h1>
+      </div>
       <button
-        className="justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="absolute right-10 rounded-md bg-mindaro px-3 py-1.5 text-sm font-semibold leading-6 text-coffee shadow-sm hover:bg-mindaro/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mindaro/80"
         onClick={() => {
           navigate("/");
         }}
