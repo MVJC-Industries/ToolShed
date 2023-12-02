@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import Dashboard from "./components/Dashboard.jsx";
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 import Profile from "./components/Profile.jsx";
-// for rendering the calendar
+import ReservationForm from "./components/ReservationForm.jsx";
+// for rendering the date/time picker in the calendar in reservation form
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import ReservationForm from "./components/ReservationForm.jsx";
 
 const App = () => {
   return (
-    <div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/reservation" element={<ReservationForm />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </LocalizationProvider>
   );
 };
 

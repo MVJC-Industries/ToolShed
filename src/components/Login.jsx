@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import ReservationForm from "./ReservationForm.jsx";
-import ReservationCard from "./ReservationCard.jsx";
-=======
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import TextInput from "../ui-components/FormInput.jsx";
 import SubmitButton from "../ui-components/FormSubmit.jsx";
->>>>>>> dev
 
 const Login = () => {
   const navigate = useNavigate();
