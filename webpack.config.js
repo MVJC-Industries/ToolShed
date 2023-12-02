@@ -23,7 +23,7 @@ module.exports = {
       publicPath: "/dist",
     },
     hot: true,
-    port: 8080,
+    port: 8081,
     proxy: {
       "/user": "http://localhost:3000",
       "/tools": "http://localhost:3000",
