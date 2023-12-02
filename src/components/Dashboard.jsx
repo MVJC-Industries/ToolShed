@@ -2,7 +2,6 @@ import React, { useState, Component } from "react";
 import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
 import Listing from "./DashboardListing.jsx";
-import "./Dashboard.css";
 //import anything else we need in dashboard
 
 const Dashboard = () => {
@@ -56,12 +55,12 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-        <div class="flex justify-center mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
-          <h2 class="text-2xl font-bold tracking-tight text-gray-900 ">
+        <div className="flex justify-center mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 ">
             Tools for Rent
           </h2>
         </div>
-        <div class="group-relative px-6 mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="group-relative px-6 mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           <Listing searchResults={searchResults}></Listing>
         </div>
       </div>

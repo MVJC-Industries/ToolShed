@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+const handleClick = () => {
+  console.log("clicked");
+};
+
 const SubmitButton = (props) => {
   return (
     <button

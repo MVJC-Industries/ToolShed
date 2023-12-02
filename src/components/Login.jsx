@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
+    // console.log(e.target[0].value);
     try {
       const response = await axios.post(
         "/user/login",
@@ -42,7 +42,7 @@ const Login = () => {
       <div className="relative z-20 flex items-center top-3 ml-10 text-lg font-medium">
         <Link to="/dashboard">
           <div>
-            <h1 className="text-mindaro text-2xl ">ToolShed</h1>
+            <h1 className="text-mindaro text-4xl m-3">ToolShed</h1>
           </div>
         </Link>
       </div>{" "}
@@ -50,11 +50,12 @@ const Login = () => {
         <div className="absolute inset-0 bg-[url('https://cdnb.artstation.com/p/assets/images/images/024/322/565/large/skaior-designs-garden-shed-big-publish.jpg?1582042307')] bg-cover bg-right sm:bg-auto sm:bg-top lg:bg-cover " />
         <div className="container relative flex h-full max-w-2xl bg-grey">
           <div className="bg-tea_green/20 sm:bg-tea_green/80 md:bg-tea_green/60 lg:bg-tea_green/30 rounded-lg pb-5 px-10 mt-10 sm:mx-auto sm:w-full sm:max-w-sm ">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-coffee">
-              Sign in to YourShed
-            </h2>
+            <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-coffee">
+              Sign into YourShed
+            </h1>
             <form
               id="login"
+              aria-label="form"
               className="space-y-6 border-b border-gray-900/10 "
               onSubmit={handleSubmit}
             >
