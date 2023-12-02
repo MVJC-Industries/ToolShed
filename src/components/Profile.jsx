@@ -69,7 +69,7 @@ const Profile = () => {
     <div className="relative">
       <Navbar className="top-0" />
       <div className=" bg-[url('https://www1.picturepush.com/photo/a/8228674/img/Anonymous/AME-4-3DM-20112012-3DModel-WilliamsonAlex.jpg')] bg-no-repeat bg-cover h-screen flex flex-col ">
-        <section className="bg-coffee/80 mt-20 flex flex-col justify-center items-center">
+        <section className=" mt-20 flex flex-col justify-center items-center">
           <h1 className="pt-5 mb-3 text-5xl font-bold text-white">My Shed</h1>
           <div className="flex space-x-3 mb-5">
             <button

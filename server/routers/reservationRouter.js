@@ -69,16 +69,17 @@ router.get(
 router.post("/", async (req, res, next) => {
   try {
     //get userid from browser session if still valid
+    console.log(req.body);
     const { userId, toolId, pickup, dropoff, message } = req.body;
     const currentTime = dayjs().toString();
-    return res.send(req.body);
-    db.query(
-      "INSERT INTO reservations (user_id, tool_id, pick_up_date, drop_off_date, created_at, updated_at) / VALUES ($1, $2, $3, $4, $5, $6)",
-      [userId, toolId, pickup, dropoff, currentTime, currentTime]
-    );
+    const query = `INSERT INTO reservations (user_id, tool_id, pick_up_date, drop_off_date, created_at, updated_at) 
+			VALUES ($1, $2, $3, $4, $5, $6)
+				RETURNING *`;
+    const params = [userId, toolId, pickup, dropoff, currentTime, currentTime];
+    db.query(query, params);
+    return res.status(200);
   } catch (err) {
-    next(err);
-    return next();
+    return next(err);
   }
 });
 

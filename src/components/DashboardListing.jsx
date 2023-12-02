@@ -36,7 +36,7 @@ const Listing = ({ searchResults }) => {
                 </button>
               }
             >
-              <ReservationForm toolId={tool.id} />
+              <ReservationForm toolId={tool.tool_id} />
             </Popup>
           </section>
         </div>

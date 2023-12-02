@@ -13,18 +13,18 @@ const ReservationForm = (toolId) => {
 
   const submit = async (toolId, pickupDate, dropoffDate, message) => {
     try {
-      const sessionInfo = sessionStorage.getItem("SessionInfo");
+      const sessionInfo = JSON.parse(sessionStorage.getItem("SessionInfo"));
       console.log(sessionInfo);
       let userId;
-      if (sessionInfo.id) {
+      if (sessionInfo) {
         userId = sessionInfo.id;
       }
       console.log("this is the userId", userId); //doesn't render yet
-      const response = await axios.post(
+      await axios.post(
         "/reservations",
         {
           userId: userId,
-          toolId: toolId,
+          toolId: toolId.toolId,
           pickup: pickupDate,
           dropoff: dropoffDate,
           message: message,

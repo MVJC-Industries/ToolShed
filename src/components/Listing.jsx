@@ -8,8 +8,10 @@ const Listing = ({
   updated_at,
 }) => {
   return (
-    <div className="grid grid-rows text-coffee bg-tea_green/90 rounded-lg pb-5 px-10 py-5  mx-5 w-full max-w-sm">
-      <h3 className="text-center text-2xl font-bold underline">{tool_title}</h3>
+    <div className="bg-tea_green/80  text-coffee rounded-lg py-5 px-10 mt-10 mx-auto w-full max-w-sm">
+      <h3 className="text-center  text-2xl font-bold underline">
+        {tool_title}
+      </h3>
       <p className="text-center italic">{description}</p>
       <p className="text-center">Price: ${price}</p>
       <div className="flex justify-center space-x-3">
