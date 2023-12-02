@@ -10,7 +10,7 @@ const Profile = () => {
   const [showListings, setShowListings] = useState(true);
   //this userID is temporary in liu of not having database access currently (11/28)
   const user = JSON.parse(sessionStorage.getItem("SessionInfo"));
-  console.log(user);
+  // console.log(user);
   //define button click on My Listings and My Rentals
   const handleClick = (button) => {
     if (button === "show listings") {
@@ -46,7 +46,7 @@ const Profile = () => {
     const fetchUserRentals = async () => {
       try {
         console.log("try to fetch rentals initiated");
-        const response = await fetch(`/reservations/rentals?userId=${userID}`);
+        const response = await fetch(`/reservations/rentals?userId=${user.id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user rentals");
         }
