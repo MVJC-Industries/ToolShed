@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
+<<<<<<< HEAD
 const passport = require("passport");
 // const LocalStrategy = require("passport-local");
+=======
+
+>>>>>>> dev
 const db = require("../lib/sql/db.js"); //should point to our db
 const userController = require("../controllers/userController.js");
 const sessionController = require("../controllers/sessionController.js");
@@ -11,12 +15,12 @@ router.post(
   "/signup",
   userController.createUser,
   sessionController.getToken,
-  async (req, res, next) => {
+  async (req, res) => {
     // console.log("res.locals.user: ", res.locals.user);
     if (res.locals.user_id)
       res.status(200).json({
         user_id: res.locals.user_id,
-        sessionToken: sessionController.getToken,
+        sessionToken: res.locals.token,
       });
     else
       res

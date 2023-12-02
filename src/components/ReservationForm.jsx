@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -76,3 +77,17 @@ const ReservationForm = () => {
 };
 
 export default ReservationForm;
+=======
+import React, { Component } from 'react';
+import Navbar from './Navbar.jsx'
+const ReservationForm = ()=>{
+
+    return(
+        <div>
+            <Navbar/>
+        </div>
+    )
+}
+
+export default ReservationForm;
+>>>>>>> dev
