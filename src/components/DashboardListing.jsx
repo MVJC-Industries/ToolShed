@@ -24,7 +24,7 @@ const Listing = ({ searchResults }) => {
           <section className="">
             <div className="mt-10">
               <h3 className="font-bold">{tool.tool_title}</h3>
-              <p>{tool.description}</p>
+              <p className="italic">{tool.description}</p>
               <p>Price: {tool.price}</p>
             </div>
             <button
