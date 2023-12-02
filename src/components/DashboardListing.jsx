@@ -29,12 +29,15 @@ const Listing = ({ searchResults }) => {
               <p className="italic">{tool.description}</p>
               <p>Price: {tool.price}</p>
             </div>
-            <button
-              className=" rounded-md bg-muted_green mt-5 px-3 py-1.5 leading-6 text-tea_green shadow-sm hover:bg-muted_green/80"
-              onClick={() => navigate("/reservation")}
+            <Popup
+              trigger={
+                <button className="basis-1/4 rounded-md bg-muted_green px-3 py-1.5 mt-10 leading-6 text-tea_green shadow-sm hover:bg-muted_green/80">
+                  Reserve
+                </button>
+              }
             >
-              Reserve
-            </button>
+              <ReservationForm toolId={tool.id} />
+            </Popup>
           </section>
         </div>
       ))}
