@@ -1,46 +1,51 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../lib/sql/db.js");
+const dayjs = require("dayjs");
 //import controllers
 
-/**
- * GET
- * displays all reservations (tools that I need for my projects) associated with the current userId
- */
-router.get("/", (req, res) => {
-  //get userid from browser session if still valid
-  res.send(res.locals);
-  // db.query(`SELECT * FROM reservations WHERE user_id=`);
-  db.query(`SELECT * FROM reservations`); //need to ask somebody how to get data from the database
+// /**
+//  * GET
+//  * displays all reservations (tools that I need for my projects) associated with the current userId
+//  */
+// router.get("/", (req, res) => {
+//   //get userid from browser session if still valid
+//   res.send("received a request");
+//   // db.query(`SELECT * FROM reservations WHERE user_id=`);
+//   // db.query(`SELECT * FROM reservations WHERE user_id= $1`, [user_id]); //need to ask somebody how to get data from the database
 
-  // get tools and tools media
-  db.query(`SELECT * FROM tools WHERE id=${tool_id}`);
-  db.query(`SELECT * FROM media WHERE tool_id=${tool_id}`);
+//   // //get images and tool information
+//   // db.query(`SELECT * FROM reservations `);
+//   // // get tools and tools media
+//   // db.query(`SELECT * FROM tools WHERE id=${tool_id}`);
+//   // db.query(`SELECT * FROM media WHERE tool_id=${tool_id}`);
 
-  //process the data into a single object
+//   //process the data into a single object
 
-  //send back to the front end
-  res.send();
+//   //send back to the front end
+//   res.sendStatus(200);
 
-  //determine how to handle errors
-});
+//   //determine how to handle errors
+// });
 
 /**
  * POST
  * adds reservation associated to a the current userId (stored in browser)
  */
-router.post("/", (req, res, err) => {
-  const { pickup, dropoff, message } = req.body;
-  //get userid from browser session if still valid
-  //may need to change pickup date and drop off dates into strings
-  //need to add message to reservations type string
-
-  const data = {};
-
-  db.query(
-    `INSERT INTO reservations (user_id, tool_id, pick_up_date, drop_off_date) / VALUES (${user_id}, ${tool_id}, ${pickup}, ${dropoff}, ${user_id})`
-  );
-  //once I get the database running, setup timestamp for created_at, and updated_at
+router.post("/", async (req, res, next) => {
+  try {
+    //get userid from browser session if still valid
+    const { userId, toolId, pickup, dropoff, message } = req.body;
+    const currentTime = dayjs().toString();
+    return res.send(req.body);
+    db.query(
+      "INSERT INTO reservations (user_id, tool_id, pick_up_date, drop_off_date, created_at, updated_at) / VALUES ($1, $2, $3, $4, $5, $6)",
+      [userId, toolId, pickup, dropoff, currentTime, currentTime]
+    );
+  } catch (err) {
+    next(err);
+    return next();
+  }
 });
 
 /**

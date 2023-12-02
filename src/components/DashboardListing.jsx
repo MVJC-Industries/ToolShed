@@ -1,6 +1,8 @@
 import React from "react";
 // import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Popup from "reactjs-popup";
+import ReservationForm from "./ReservationForm.jsx";
 
 const Listing = ({ searchResults }) => {
   const navigate = useNavigate();
@@ -14,12 +16,21 @@ const Listing = ({ searchResults }) => {
           <h3 className="font-bold">{tool.tool_title}</h3>
           <p>{tool.description}</p>
           <p>Price: {tool.price}</p>
-          <button
+          {/* <button
             className="basis-1/4 rounded-md bg-muted_green px-3 py-1.5 mt-10 leading-6 text-tea_green shadow-sm hover:bg-muted_green/80"
             onClick={() => navigate("/reservation")}
           >
             Reserve
-          </button>
+          </button> */}
+          <Popup
+            trigger={
+              <button className="basis-1/4 rounded-md bg-muted_green px-3 py-1.5 mt-10 leading-6 text-tea_green shadow-sm hover:bg-muted_green/80">
+                Reserve
+              </button>
+            }
+          >
+            <ReservationForm toolId={tool.id} />
+          </Popup>
         </div>
       ))}
     </div>

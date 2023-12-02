@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 
 app.use(
   cors({
-    origin: "http://localhost:8081",
+    origin: "*",
   })
 );
 app.use(express.json());
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use('/api', apiRouter);
 //route handlers
 app.use("/user", userRouter);
-app.use("/reservation", reservationRouter);
+app.use("/reservations", reservationRouter);
 
 //public routes with limited permissions if not logged in
 app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
@@ -53,18 +53,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-//route handlers
-app.use("/user", userRouter);
-app.use("/reservation", reservationRouter);
-
-//public routes with limited permissions if not logged in
-app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
-  console.log("i am in the toolRouter middleware", res.locals.tools);
-  return res.status(200).json(res.locals.tools);
-});
-app.use("*", (req, res) => {
-  res.status(404).send("Not Found");
-});
 //global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -82,11 +70,11 @@ app.listen(PORT, () => {
 });
 
 // Check the database connection
-async () => {
+(async () => {
   try {
     await pgPool.query("SELECT NOW()"); // Query the database to check the connection
     console.log("Connected to the database");
   } catch (error) {
     console.error("Failed to connect to the database:", error);
   }
-};
+})();
