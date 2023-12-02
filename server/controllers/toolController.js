@@ -7,9 +7,28 @@ toolController.searchTool = async (req, res, next) => {
 
   try {
     const { query } = req.body;
-    const toolQuery = `SELECT * FROM tools 
-		WHERE LOWER(tool_title) LIKE LOWER($1)`;
+    const toolQuery = `
+		SELECT
+			tools.id AS tool_id,
+			tools.user_id,
+			tools.tool_title,
+			tools.description,
+			tools.price,
+			tools.published_at,
+			tools.updated_at,
+			media.file_name,
+			media.mime_type,
+			media.public_link
+		FROM
+			tools
+		LEFT JOIN
+			media ON tools.id = media.tool_id
+		WHERE
+			LOWER(tools.tool_title) LIKE LOWER($1)
+	`;
+
     const params = [`%${query}%`];
+
     const searchResults = await db.query(toolQuery, params);
 
     console.log("i am searchResults", searchResults);

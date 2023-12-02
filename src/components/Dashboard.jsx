@@ -9,6 +9,26 @@ const Dashboard = () => {
   const [querystr, setQuerystr] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  const displayTools = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/dashboard/tools/search`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: querystr }),
+        }
+      );
+      const data = await response.json();
+      setSearchResults(data);
+      // Handle the response data
+    } catch (error) {
+      // Handle errors
+      console.error("Error fetching search results:", error);
+    }
+  };
   const handleSearch = async (e) => {
     e.preventDefault();
     // Make a request to the server with the search query
@@ -31,11 +51,14 @@ const Dashboard = () => {
       console.error("Error fetching search results:", error);
     }
   };
+  useEffect(() => {
+    displayTools();
+  }, []);
   //display listings
   return (
     <>
       <Navbar />
-      <div className="flex flex-col bg-coffee/20 items-center justify-center py-6">
+      <form className="flex flex-col bg-coffee/20 items-center justify-center py-6">
         <section className="relative z-0 mb-6 group w-3/5">
           <input
             type="text"
@@ -53,12 +76,13 @@ const Dashboard = () => {
           </label>
         </section>
         <button
+          type="submit"
           className="rounded-md bg-coffee text-tea_green px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-coffee/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
           onClick={handleSearch}
         >
           Search
         </button>
-      </div>
+      </form>
       <div className="flex justify-center mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-coffee ">
           Tools for Rent
