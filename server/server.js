@@ -53,7 +53,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-<<<<<<< HEAD
 //route handlers
 app.use("/user", userRouter);
 app.use("/reservation", reservationRouter);
@@ -66,8 +65,6 @@ app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
 app.use("*", (req, res) => {
   res.status(404).send("Not Found");
 });
-=======
->>>>>>> dev
 //global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -92,9 +89,4 @@ async () => {
   } catch (error) {
     console.error("Failed to connect to the database:", error);
   }
-<<<<<<< HEAD
 };
-=======
-})();
-// app.listen(3000, ()=> { co
->>>>>>> dev
