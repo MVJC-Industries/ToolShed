@@ -9,8 +9,8 @@ const Profile = () => {
   const [rentals, setRentals] = useState([]);
   const [showListings, setShowListings] = useState(true);
   //this userID is temporary in liu of not having database access currently (11/28)
-  const userID = 1;
-
+  const user = JSON.parse(sessionStorage.getItem("SessionInfo"));
+  // console.log(user);
   //define button click on My Listings and My Rentals
   const handleClick = (button) => {
     if (button === "show listings") {
@@ -26,7 +26,9 @@ const Profile = () => {
     //function to get users listing and set user listing state
     const fetchUserListings = async () => {
       try {
-        const response = await fetch(`/reservations/listings?userId=${userID}`);
+        const response = await fetch(
+          `/reservations/listings?userId=${user.id}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch user listings");
         }
@@ -44,7 +46,7 @@ const Profile = () => {
     const fetchUserRentals = async () => {
       try {
         console.log("try to fetch rentals initiated");
-        const response = await fetch(`/reservations/rentals?userId=${userID}`);
+        const response = await fetch(`/reservations/rentals?userId=${user.id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user rentals");
         }
@@ -66,23 +68,25 @@ const Profile = () => {
   return (
     <div className="relative">
       <Navbar className="top-0" />
-      <div className="bg-[url('https://www1.picturepush.com/photo/a/8228674/img/Anonymous/AME-4-3DM-20112012-3DModel-WilliamsonAlex.jpg')] bg-no-repeat bg-cover h-screen flex flex-col items-center justify-center">
-        <h1 className="text-5xl font-bold text-white mb-4">My Shed</h1>
-        <div className="flex space-x-3 mb-20">
-          <button
-            className="rounded-md bg-reseda_green text-black px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-coffee/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
-            onClick={() => handleClick("show listings")}
-          >
-            My Listings
-          </button>
-          <button
-            className="rounded-md bg-reseda_green text-black px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-coffee/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
-            onClick={() => handleClick("show rentals")}
-          >
-            My Rentals
-          </button>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className=" bg-[url('https://www1.picturepush.com/photo/a/8228674/img/Anonymous/AME-4-3DM-20112012-3DModel-WilliamsonAlex.jpg')] bg-no-repeat bg-cover h-screen flex flex-col ">
+        <section className="bg-coffee/80 mt-20 flex flex-col justify-center items-center">
+          <h1 className="pt-5 mb-3 text-5xl font-bold text-white">My Shed</h1>
+          <div className="flex space-x-3 mb-5">
+            <button
+              className="rounded-md bg-reseda_green text-mindaro px-3 py-1.5 text-lg font-semibold leading-6 shadow-sm hover:bg-reseda_green/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
+              onClick={() => handleClick("show listings")}
+            >
+              My Tools
+            </button>
+            <button
+              className="rounded-md bg-reseda_green text-mindaro px-3 py-1.5 text-lg font-semibold leading-6 shadow-sm hover:bg-reseda_green/80 hover:text-tea_green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted_green"
+              onClick={() => handleClick("show rentals")}
+            >
+              My Rentals
+            </button>
+          </div>
+        </section>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-between mt-5">
           {showListings
             ? listings.map((tool) => <Listing key={tool.id} {...tool} />)
             : rentals.map((rental) => (
