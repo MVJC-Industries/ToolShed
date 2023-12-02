@@ -25,4 +25,21 @@ toolController.searchTool = async (req, res, next) => {
   }
 };
 
+toolController.getMyTools = async (req, res, next) => {
+  const userId = parseInt(req.query.userId);
+  const queryText = "SELECT * FROM tools WHERE user_id = $1"
+  //query database for tools
+  try {
+    const myTools = await db.query(queryText, [userId]);
+    res.locals.myTools = myTools.rows;
+    return next();
+  } catch (error) {
+    return next({
+      log: "Express error handler caught middleware error when getting tools by user id",
+      status: 404,
+      message: { err: err }
+    });
+  }
+}
+
 module.exports = toolController;
