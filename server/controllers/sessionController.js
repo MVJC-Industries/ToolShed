@@ -1,5 +1,5 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oidc");
+// const passport = require("passport");
+// const GoogleStrategy = require("passport-google-oidc");
 const jwt = require("jsonwebtoken");
 const errorHandler = require("../lib/errorHandler.js");
 // save unique user ID in cookie
@@ -29,10 +29,6 @@ sessionController.getToken = async (req, res, next) => {
     );
   }
 };
-
-sessionController.verifyToken = () => {};
-
-sessionController.googleAuth = () => {};
 
 module.exports = sessionController;
 
