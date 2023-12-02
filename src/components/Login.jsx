@@ -9,7 +9,6 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(e.target[0].value);
     try {
       const response = await axios.post(
         "/user/login",
