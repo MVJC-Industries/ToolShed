@@ -1,0 +1,46 @@
+body{
+    margin-top:0;
+}
+.dashboard{
+    .searchbar {
+        margin: 10px;
+        input{
+            width:300px;
+            height:20px;
+            background-color:rgb(232, 222, 222);
+            border-color:rgb(104, 124, 82);
+            margin-right:20px;
+        }
+
+        button{
+            border-radius:5px;
+            border:none;
+            width:100px;
+            height:25px;
+            background-color:rgb(104, 124, 82);
+            color:white;
+        }
+        /* Other styles for the search bar */
+      }
+}
+
+.listings {
+
+    margin: 10px;
+    margin-top:50px;
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* Other styles for the listings container */
+  }
+
+.listing-card {
+    background-color:rgb(212, 183, 187);
+    width: calc(25% - 10px); 
+    /* 4 cards in a row with 10px gap */
+    margin-bottom: 10px;
+    padding:10px;
+    border-radius:10px;
+    /* Other styles for the listing cards */
+  }

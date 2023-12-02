@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const db=require("../lib/sql/db.js")
+const db = require("../lib/sql/db.js");
 //import controllers
-
 
 // router.get("/search", async (req, res) => {
 //     console.log('hi i am in /search',req.body)

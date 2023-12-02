@@ -9,7 +9,7 @@ const pgPool = require("./lib/sql/db.js");
 const userRouter = require("./routers/userRouter.js");
 const reservationRouter = require("./routers/reservationRouter.js");
 const toolRouter = require("./routers/toolRouter.js");
-const toolController=require("./controllers/toolController.js")
+const toolController = require("./controllers/toolController.js");
 const PORT = process.env.PORT;
 
 app.use(
@@ -21,22 +21,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //route handlers
-app.use('/reservation', (req, res, next) => {
-  console.log('incoming reservation path: ', req.path);
-  next();
-}, reservationRouter);
-
-app.use('/user', (req, res, next) => {
-  console.log('hit user router');
-  next();
-}, userRouter);
+app.use("/user", userRouter);
+app.use("/reservations", reservationRouter);
+app.use('/tools', toolRouter);
 
 //public routes with limited permissions if not logged in
-app.use('/tools', (req, res, next) => {
-  console.log('hit tool router');
-  next();
-}, toolRouter);
-
+app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
+  console.log("i am in the toolRouter middleware", res.locals.tools);
+  return res.status(200).json(res.locals.tools);
+});
+app.use("*", (req, res) => {
+  res.status(404).send("Not Found");
+});
 
 if (process.env.NODE_ENV === "development") {
   console.log(process.env.NODE_ENV);
@@ -57,20 +53,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-//route handlers
-// app.use("/user", userRouter);
-// app.use("/reservation", reservationRouter);
-
-//public routes with limited permissions if not logged in
-
-app.use("/dashboard/tools/search", toolController.searchTool, (req, res) => {
-  console.log('i am in the toolRouter middleware',res.locals.tools)
-  return res.status(200).json(res.locals.tools);
-});
-
-app.use("*", (req, res) => {
-  res.status(404).send("Not Found");
-});
 //global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -96,4 +78,4 @@ app.listen(PORT, () => {
     console.error("Failed to connect to the database:", error);
   }
 })();
-// app.listen(3000, ()=> { console.log("Server started on port 3000")});
+// app.listen(3000, ()=> { co
