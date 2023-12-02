@@ -18,7 +18,7 @@ const Listing = ({ searchResults }) => {
             className="basis-1/4 rounded-md bg-muted_green px-3 py-1.5 mt-10 leading-6 text-tea_green shadow-sm hover:bg-muted_green/80"
             onClick={() => navigate("/reservation")}
           >
-            Make Reservation
+            Reserve
           </button>
         </div>
       ))}
